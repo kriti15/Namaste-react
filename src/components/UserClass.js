@@ -8,19 +8,19 @@ class UserClass extends React.Component {
       count: 0,
     };
 
-    console.log(props.name + "constructor");
+    // console.log(props.name + "constructor");
   }
 
   componentDidUpdate(){
-    console.log(this.props.name + " componentDidUpdate");
+    // console.log(this.props.name + " componentDidUpdate");
   }
 
   componentWillUnmount() {
-    console.log(this.props.name + " componentWillUnmount");
+    // console.log(this.props.name + " componentWillUnmount");
   }
 
   componentDidMount() {
-    console.log(this.props.name + "componentDidMount");
+    // console.log(this.props.name + "componentDidMount");
     this.setState({
       count: 50
     })
@@ -28,7 +28,7 @@ class UserClass extends React.Component {
   render() {
     const { name } = this.props;
     const { count } = this.state;
-    console.log(name + "render");
+    // console.log(name + "render");
     return (
       <div className="user-card">
         <h1>Count: {count}</h1>

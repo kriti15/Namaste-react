@@ -3,12 +3,16 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+
+  const {loggedInUser, setUserName} = useContext(UserContext);
 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
@@ -80,14 +84,22 @@ const Body = () => {
             Top Rated Restaurants
           </button>
         </div>
+        <div className="m-4 p-4 flex items-center">
+          <label>UserName: {" "}</label>
+          <input className="p-2 border border-black"
+            type="text"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurant.map((restaurant) => (
           <Link
             key={restaurant?.info.id}
-            to={"/restaurants/" + restaurant?.info.id}
+            to={"/restaurant/" + restaurant?.info.id}
           >
-            {restaurant.info.aggregatedDiscountInfoV3.discountTag ? (
+            {restaurant.info.aggregatedDiscountInfoV3 ? (
               <RestaurantCardPromoted resData={restaurant?.info} />
             ) : (
               <RestaurantCard resData={restaurant?.info} />
