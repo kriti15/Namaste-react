@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { useContext } from "react";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
   const { loggedInUser } = useContext(UserContext);
+  const cartItems = useSelector((store) => store.cart.items);
+
   return (
     <div className="flex bg-green-100 justify-between shadow-lg">
       <div className="img-container">
@@ -28,7 +31,9 @@ export const Header = () => {
           <li className="m-2 p-2">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li className="m-2 p-2">Cart</li>
+          <li className="m-2 p-2">
+            <Link to="/cart">Cart - ({cartItems.length} items)</Link>
+          </li>
           <li className="m-2 p-2">
             <Link to="/grocery">Grocery</Link>
           </li>
