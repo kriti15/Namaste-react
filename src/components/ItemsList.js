@@ -8,7 +8,7 @@ const ItemsList = ({ item }) => {
     dispatch(addItem(item));
   };
   return (
-    <div className="flex justify-between border-b-2 border-gray-300 p-2 m-2">
+    <div data-testid="foodItems" className="flex justify-between border-b-2 border-gray-300 p-2 m-2">
       <div className="text-left w-3/4 my-4">
         <span>{item?.card?.info?.name}</span>
         <span>
